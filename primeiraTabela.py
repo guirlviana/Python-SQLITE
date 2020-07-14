@@ -17,7 +17,13 @@ class Album(Base):
     preco = Column(Numeric(10,2))
     artista_id = Column(Integer, ForeignKey('artista.artista_id'))
     
+    cancoes = relationship('Cancao')
 
+class Cancao(Base):
+    __tablename__ = "cancao"
+    cancao_id = Column(Integer, Sequence('cancao_id_auto_incremento', start=1), primary_key=True)
+    nome = Column('String')
+    album_id = Column(Integer, ForeignKey('album.album_id'))
 engine = create_engine('sqlite:///artistas.db', echo=True)
 Base.metadata.create_all(bind=engine)
 
