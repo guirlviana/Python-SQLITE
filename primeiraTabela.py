@@ -16,8 +16,20 @@ Conexao = sessionmaker(bind=engine)
 conexao = Conexao()
 conexao: sessionmaker
 
-novo_artista = Artista()
-novo_artista.artista_id = 1
-novo_artista.nome = "Artista 1"
-conexao.add(novo_artista)
+# novo_artista = Artista()
+# novo_artista.artista_id = 1
+# novo_artista.nome = "Artista 1"
+# conexao.add(novo_artista)
+# conexao.commit()
+
+resultado = conexao.query(Artista).all()
+
+for item in resultado:
+    print(item.artista_id)
+    print(item.nome)
+
+novo_artista2 = Artista()
+novo_artista2.artista_id = 2
+novo_artista2.nome = "Artista 2"
+conexao.add(novo_artista2)
 conexao.commit()
